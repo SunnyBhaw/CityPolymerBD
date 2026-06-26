@@ -7,6 +7,7 @@ import {
   toggleConcernStatus,
   getAllConcerns,
   getConcernById,
+  getConcernBySlug,
 } from '../controllers/concern.controller.js';
 
 const router = express.Router();
@@ -16,6 +17,7 @@ router.put('/:id', imageUpload.single('logo'), updateConcern);
 router.delete('/:id', deleteConcern);
 router.patch('/:id/toggle-status', toggleConcernStatus);
 router.get('/', getAllConcerns);
+router.get('/slug/:slug', getConcernBySlug);
 router.get('/:id', getConcernById);
 
 export default router;
