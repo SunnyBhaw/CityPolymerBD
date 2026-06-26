@@ -267,3 +267,26 @@ export const getConcernById = async (req, res, next) => {
     next(error);
   }
 };
+
+// 7. Get single concern by slug (for public frontend)
+export const getConcernBySlug = async (req, res, next) => {
+  try {
+    const { slug } = req.params;
+
+    const concern = await Concern.findOne({ slug: slug.trim() });
+    if (!concern) {
+      return res.status(404).json({
+        success: false,
+        message: 'Concern not found.',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: concern,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
